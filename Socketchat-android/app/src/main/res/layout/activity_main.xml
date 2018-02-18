@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7fbfb"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#f7fbfb"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:background="#f7fbfb"
+            android:text="MongodbChat"/>
+
+        <TextView
+            android:id="@+id/clearButton"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Clear"
+            android:textSize="17sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:gravity="center"
+            android:background="#f7fbfb"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Online"
+        android:visibility="gone"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="username"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/messageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#f7fbfb"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/newMessageEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="message"
+                android:background="#f7fbfb"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/sendButton"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="#f7fbfb"
+                android:gravity="center"
+                android:text="send"
+                android:textSize="17sp"
+                android:textColor="@android:color/holo_blue_dark"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
