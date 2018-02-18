@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-sm-12">
+      <h1 class="text-center">
+        MongoChat
+        <button id="clear" class="btn btn-danger" (click)="clearMessage()">Clear</button>
+      </h1>
+      <div class="status"></div>
+      <div id="chat">
+        <input type="text" id="username" class="form-control" placeholder="Enter name ..." [(ngModel)]="user">
+        <br>
+        <div class="card">
+          <div id="messages" class="card-block">
+            <ul>
+              <li *ngFor="let msg of arrayMessage; let i = index">
+                {{msg}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <div class="send-message">
+          <input class="send-input" type="text" [(ngModel)]="newMessage">
+          <button class="send-button btn btn-primary" (click)="sendMessage()">send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

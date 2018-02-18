@@ -1,0 +1,18 @@
+#messages {
+  height: 300px;
+}
+
+.send-message {
+  width: 100%;
+}
+
+.send-input {
+  width: 83%;
+  height: 50px;
+  padding-right: 50px;
+}
+
+.send-button {
+  width: 15%;
+  float: right;
+}
