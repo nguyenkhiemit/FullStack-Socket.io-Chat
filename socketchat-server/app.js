@@ -17,11 +17,15 @@ mongoose.connect('mongodb://127.0.0.1/socketchat-server', function (err) {
     console.log('Connect mongodb success!');
     io.sockets.on('connection', function (socket) {
         console.log('Have a client connected...');
+        socket.emit('connected');
+
         Message.find(function (err, data) {
             console.log(data);
             socket.emit('all-message', {messages : data});
         });
-        socket.on('new_message', function (data) {
+
+        socket.on('new-message', function (data) {
+            console.log(data);
            var newMessage = new Message({
                user: data.user,
                message: data.message
@@ -30,12 +34,13 @@ mongoose.connect('mongodb://127.0.0.1/socketchat-server', function (err) {
            newMessage.save(function (err) {
                if(!err) {
                    console.log('Add a new message');
-                   socket.emit('send-message', {message : newMessage})
+                   io.sockets.emit('send-message', data)
                } else {
-                   console.log('Add message error');
+                   console.log('Add message error ' + err);
                }
            })
         });
+
         socket.on('clear', function () {
             Message.remove(function (err) {
                 if(!err) {

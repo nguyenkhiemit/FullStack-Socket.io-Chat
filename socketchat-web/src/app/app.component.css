@@ -2,17 +2,22 @@
   height: 300px;
 }
 
+.status {
+  color: red;
+}
+
 .send-message {
   width: 100%;
 }
 
 .send-input {
   width: 83%;
-  height: 50px;
-  padding-right: 50px;
+  height: 40px;
+  padding-right: 40px;
 }
 
 .send-button {
   width: 15%;
   float: right;
+  height: 40px;
 }

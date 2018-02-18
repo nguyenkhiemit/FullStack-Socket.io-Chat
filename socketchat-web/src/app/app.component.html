@@ -6,7 +6,7 @@
         MongoChat
         <button id="clear" class="btn btn-danger" (click)="clearMessage()">Clear</button>
       </h1>
-      <div class="status"></div>
+      <div id="status" class="status" [hidden]="hidden">Online</div>
       <div id="chat">
         <input type="text" id="username" class="form-control" placeholder="Enter name ..." [(ngModel)]="user">
         <br>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as io from 'socket.io-client';
 import {} from '..s'
 
@@ -7,7 +7,7 @@ import {} from '..s'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
 
   socket = io.connect("http://localhost:3000/");
@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
 
   newMessage = '';
 
+  hidden = true;
+
   constructor() {
 
   }
@@ -25,6 +27,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if(this.socket !== undefined) {
       console.log('Connected to socket...');
+
+      this.socket.on('connected', () => {
+        this.hidden = false
+      });
 
       this.socket.on('all-message', (data) => {
         this.arrayMessage = [];
@@ -35,14 +41,16 @@ export class AppComponent implements OnInit {
       });
 
       this.socket.on('send-message', (data) => {
-        var message = data.message;
-        this.arrayMessage.push(message.user + ' : ' + message.message);
-      });
-
-      this.socket.on('output', function (data) {
-        console.log(data);
+        this.arrayMessage.push(data.user + ' : ' + data.message);
       });
     }
+  }
+
+  ngOnDestroy() {
+    this.socket.disconnect();
+    this.socket.off('connected');
+    this.socket.off('all-message');
+    this.socket.off('send-message');
   }
 
   sendMessage() {
@@ -50,7 +58,7 @@ export class AppComponent implements OnInit {
       alert('User name or message have no string!');
       return;
     }
-    this.socket.emit('new_message', {user: this.user, message: this.newMessage});
+    this.socket.emit('new-message', {user: this.user, message: this.newMessage});
     this.user = '';
     this.newMessage = '';
   }
