@@ -20,17 +20,15 @@ mongoose.connect('mongodb://127.0.0.1/socketchat-server', function (err) {
         socket.emit('connected');
 
         Message.find(function (err, data) {
-            console.log(data);
             socket.emit('all-message', {messages : data});
         });
 
         socket.on('new-message', function (data) {
-            console.log(data);
            var newMessage = new Message({
                user: data.user,
                message: data.message
            });
-           console.log(newMessage);
+            console.log("X_new", "" + newMessage);
            newMessage.save(function (err) {
                if(!err) {
                    console.log('Add a new message');

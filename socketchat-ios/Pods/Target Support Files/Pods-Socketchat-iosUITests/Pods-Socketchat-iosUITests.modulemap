@@ -1,0 +1,6 @@
+framework module Pods_Socketchat_iosUITests {
+  umbrella header "Pods-Socketchat-iosUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
